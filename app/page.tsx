@@ -4,9 +4,9 @@ import { useEffect, useRef } from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
 import {
-  Monitor, RefreshCw, Lightbulb,
+  Monitor,
   Code2, Cloud, Leaf, Zap, MessageSquare, ShieldCheck,
-  ArrowRight, CheckCircle2, Brain, Workflow, Sparkles,
+  ArrowRight, Brain, Workflow,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────

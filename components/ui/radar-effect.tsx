@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import React from "react";
 
-export const Circle = ({ className, children, idx, ...rest }: any) => {
+export const Circle = ({ className, idx, ...rest }: React.HTMLAttributes<HTMLDivElement> & { idx: number }) => {
   return (
     <motion.div
       {...rest}
