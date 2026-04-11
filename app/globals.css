@@ -1,86 +1,84 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
 
 /* ════════════════════════════════════════════════════════════
-   OBSIDIAN FORGE – Design System
-   Surface Philosophy: Tonal Transitions, No Borders
+   FLUID PRECISION FRAMEWORK – Design System
+   Creative North Star: "The Editorial Architect"
+   Surface Philosophy: Luminous Depth, No-Line Rule
    ════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ── Surface Hierarchy ── */
-  --surface-lowest:   #0e0e0e;   /* Global background */
-  --surface-low:      #1c1b1b;   /* Primary layout blocks / Bento cards */
-  --surface:          #131313;   /* Glass base */
-  --surface-bright:   #3a3939;   /* Active input bg */
-  --surface-high:     #2a2a2a;   /* Hover states / active cards */
-  --surface-highest:  #353534;   /* Nested elevated elements */
+  /* ── Surface Hierarchy ("Fine Paper" Layers) ── */
+  --surface:                 #F8F9FA;   /* Base canvas */
+  --surface-container-lowest:#FFFFFF;   /* Cards / highlighted modules — "pop" */
+  --surface-container-low:   #F1F2F3;   /* Alternating sections */
+  --surface-container:       #EDEEEF;   /* Sidebars / interactive trays */
+  --surface-container-high:  #E4E5E6;   /* Hover states */
+  --surface-dim:             #D9DADB;   /* Subtle disabled surfaces */
 
-  /* ── Primary (Cyan/AI) ── */
-  --primary-container: #00f0ff;
-  --primary-fixed-dim: #00dbe9;
-  --primary:           #dbfcff;
-  --on-primary:        #00363a;
+  /* ── Primary ("Intelligence Blue") ── */
+  --primary:                 #3525CD;
+  --primary-container:       #4F46E5;
+  --on-primary:              #FFFFFF;
+  --primary-fixed-dim:       #6366F1;
 
-  /* ── Secondary (Purple/Live) ── */
-  --secondary-container: #9d05ff;
-  --secondary:           #dfb7ff;
-  --secondary-fixed:     #dfb7ff;
-  --secondary-fixed-dim: #dfb7ff;
+  /* ── Secondary ("Creativity Purple") ── */
+  --secondary:               #712AE2;
+  --secondary-container:     #8B5CF6;
+  --on-secondary:            #FFFFFF;
 
-  /* ── Tertiary (Silver/Headlines) ── */
-  --tertiary: #f1f6ff;
-
-  /* ── Outlines ── */
-  --outline:         #849495;
-  --outline-variant: #3b494b;
+  /* ── Outlines (Ghost Borders) ── */
+  --outline:                 #79747E;
+  --outline-variant:         #C7C4D8;
 
   /* ── Text ── */
-  --on-surface:         #e5e2e1;
-  --on-surface-variant: #b9cacb;
+  --on-surface:              #191C1D;   /* Never 100% black */
+  --on-surface-variant:      #44474F;   /* Secondary text */
+  --on-background:           #191C1D;
 }
 
 /* ────────────────────────────────────────────
-   Tailwind v4 theme tokens
+   Tailwind v4 Theme Tokens
    ──────────────────────────────────────────── */
 @theme inline {
-  --color-background: #0e0e0e;
-  --color-foreground: #e5e2e1;
+  --color-background:          #F8F9FA;
+  --color-foreground:          #191C1D;
 
-  --color-surface-lowest:  #0e0e0e;
-  --color-surface-low:     #1c1b1b;
-  --color-surface-base:    #131313;
-  --color-surface-bright:  #3a3939;
-  --color-surface-high:    #2a2a2a;
-  --color-surface-highest: #353534;
+  --color-surface:             #F8F9FA;
+  --color-surface-lowest:      #FFFFFF;
+  --color-surface-low:         #F1F2F3;
+  --color-surface-container:   #EDEEEF;
+  --color-surface-high:        #E4E5E6;
+  --color-surface-dim:         #D9DADB;
 
-  --color-primary-container: #00f0ff;
-  --color-primary-fixed-dim: #00dbe9;
-  --color-primary:           #dbfcff;
-  --color-on-primary:        #00363a;
+  --color-primary:             #3525CD;
+  --color-primary-container:   #4F46E5;
+  --color-primary-fixed-dim:   #6366F1;
+  --color-on-primary:          #FFFFFF;
 
-  --color-secondary-container: #9d05ff;
-  --color-secondary:           #dfb7ff;
-  --color-secondary-fixed:     #dfb7ff;
+  --color-secondary:           #712AE2;
+  --color-secondary-container: #8B5CF6;
+  --color-on-secondary:        #FFFFFF;
 
-  --color-outline:         #849495;
-  --color-outline-variant: #3b494b;
+  --color-outline:             #79747E;
+  --color-outline-variant:     #C7C4D8;
 
-  --color-on-surface:         #e5e2e1;
-  --color-on-surface-variant: #b9cacb;
+  --color-on-surface:          #191C1D;
+  --color-on-surface-variant:  #44474F;
 
   /* Legacy brand – kept for GlowingEffect */
-  --color-brand-400: #00dbe9;
-  --color-brand-500: #00f0ff;
-  --color-brand-600: #00c8d4;
-  --color-brand-700: #009aa5;
-  --color-brand-800: #006970;
-  --color-brand-900: #003c42;
-  --color-dark-900:  #0e0e0e;
-  --color-dark-800:  #1c1b1b;
-  --color-dark-700:  #2a2a2a;
+  --color-brand-400: #6366F1;
+  --color-brand-500: #4F46E5;
+  --color-brand-600: #3525CD;
+  --color-brand-700: #2A1FA3;
+  --color-brand-800: #1E1678;
+  --color-brand-900: #120D4E;
+  --color-dark-900:  #F8F9FA;
+  --color-dark-800:  #F1F2F3;
+  --color-dark-700:  #EDEEEF;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-headline: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:     "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ────────────────────────────────────────────
@@ -91,123 +89,157 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--surface-lowest);
+  background-color: var(--surface);
   color: var(--on-surface-variant);
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6; /* Turkish-optimized — ğ, ş, ç, İ */
+  letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Obsidian Forge: never use pure white for body */
+/* Fluid Precision: never use pure black */
 p, li, span { color: var(--on-surface-variant); }
 
 ::selection {
-  background-color: rgba(0, 240, 255, 0.2);
+  background-color: rgba(53, 37, 205, 0.12);
   color: var(--on-surface);
 }
 
 /* ────────────────────────────────────────────
-   Typography Helpers
+   Typography — The Editorial Voice
+   Display: Manrope | Body: Inter
+   Turkish-optimized line heights
    ──────────────────────────────────────────── */
 .font-headline {
-  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Display / Hero text — Plus Jakarta Sans tighter kern */
+/* Display-LG — Manrope 3.5rem Bold */
 .display-xl {
-  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(2.75rem, 6vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--on-surface);
 }
 
-/* CHROME GRADIENT — from tertiary (#f1f6ff) → outline (#849495) → tertiary */
-.chrome-text {
-  background: linear-gradient(135deg, #f1f6ff 0%, #849495 45%, #f1f6ff 100%);
+/* Headline-MD — Manrope 1.75rem Semi-Bold */
+.headline-md {
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--on-surface);
+}
+
+/* Title-LG — Inter 1.375rem Medium */
+.title-lg {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.5;
+  color: var(--on-surface);
+}
+
+/* Editorial gradient headline — deep "ink" to "intelligence blue" */
+.editorial-text {
+  background: linear-gradient(135deg, #191C1D 0%, #3525CD 60%, #4F46E5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* SILVER TECH GRADIENT – for premium headers */
-.silver-gradient {
-  background: linear-gradient(90deg, #f1f6ff 0%, #849495 50%, #c8d0d1 100%);
+/* Subtle slate gradient for less dramatic headlines */
+.slate-gradient {
+  background: linear-gradient(90deg, #191C1D 0%, #44474F 50%, #191C1D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Labels – serialized machine-coded aesthetic */
+/* Label-MD — Inter 0.75rem Semi-Bold CAPS */
 .label-tag {
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   color: var(--outline);
 }
 
 /* ────────────────────────────────────────────
-   Glassmorphism – The "Glass & Gradient" Rule
-   Base: surface (#131313) at 60% + blur(20px)
+   Glassmorphism — "Glass & Texture" Rule
+   Surface (#F8F9FA) at 70% + blur(20px)
    ──────────────────────────────────────────── */
 .glass-panel {
-  background: rgba(19, 19, 19, 0.60);
+  background: rgba(248, 249, 250, 0.70);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  /* Ghost Border fallback */
-  border: 1px solid rgba(59, 73, 75, 0.15);
+  /* Ghost Border fallback — outline_variant at 15% */
+  border: 1px solid rgba(199, 196, 216, 0.15);
 }
 
 .glass-panel-dark {
-  background: rgba(14, 14, 14, 0.65);
+  background: rgba(237, 238, 239, 0.65);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(59, 73, 75, 0.12);
+  border: 1px solid rgba(199, 196, 216, 0.12);
 }
 
 /* ────────────────────────────────────────────
-   Ambient Shadow – tinted primary_container at 8%
+   Ambient Shadows — "Whisper-Quiet"
+   Y: 10px, Blur: 40px, Spread: 0
+   Color: on-surface (#191C1D) at 4-6% opacity
    ──────────────────────────────────────────── */
-.ambient-glow {
-  box-shadow: 0 0 50px 0 rgba(0, 240, 255, 0.08);
+.ambient-shadow {
+  box-shadow: 0 10px 40px 0 rgba(25, 28, 29, 0.05);
 }
 
-.cyber-glow {
-  box-shadow: 0 0 60px rgba(0, 240, 255, 0.10), 0 0 120px rgba(0, 240, 255, 0.04);
+.ambient-shadow-lg {
+  box-shadow: 0 10px 40px 0 rgba(25, 28, 29, 0.06),
+              0 4px 16px 0 rgba(25, 28, 29, 0.03);
+}
+
+/* Primary ambient — for CTA cards */
+.ambient-primary {
+  box-shadow: 0 10px 40px 0 rgba(53, 37, 205, 0.08);
 }
 
 /* ────────────────────────────────────────────
-   Navbar – Glassmorphism floating
+   Navbar — Glassmorphism floating
    ──────────────────────────────────────────── */
 #navbar {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 0 40px rgba(0, 240, 255, 0.04);
+  box-shadow: 0 1px 0 rgba(199, 196, 216, 0.15);
 }
 
 /* ────────────────────────────────────────────
-   Hero Section
+   Hero Section — Editorial Architect
    ──────────────────────────────────────────── */
 .hero-section {
   position: relative;
   overflow: hidden;
-  background: var(--surface-lowest);
+  background: var(--surface);
 }
 
-/* Laser sight accent – primary_container as high-contrast focal point */
+/* Subtle intelligent radial gradients — primary at very low opacity */
 .hero-section::before {
   content: "";
   position: absolute;
-  top: -120px;
-  left: -120px;
-  width: 700px;
-  height: 700px;
+  top: -160px;
+  left: -160px;
+  width: 800px;
+  height: 800px;
   background: radial-gradient(circle at center,
-    rgba(0, 240, 255, 0.07) 0%,
-    rgba(0, 240, 255, 0.02) 40%,
+    rgba(53, 37, 205, 0.06) 0%,
+    rgba(79, 70, 229, 0.02) 40%,
     transparent 70%);
   pointer-events: none;
 }
@@ -215,73 +247,72 @@ p, li, span { color: var(--on-surface-variant); }
 .hero-section::after {
   content: "";
   position: absolute;
-  bottom: -80px;
-  right: -80px;
-  width: 600px;
-  height: 600px;
+  bottom: -100px;
+  right: -100px;
+  width: 700px;
+  height: 700px;
   background: radial-gradient(circle at center,
-    rgba(157, 5, 255, 0.06) 0%,
+    rgba(113, 42, 226, 0.05) 0%,
     transparent 60%);
   pointer-events: none;
 }
 
 /* ────────────────────────────────────────────
-   BENTO CARDS
-   Surface: surface_container_low (#1c1b1b)
-   No dividers, no borders — use tonal depth
-   Radius: xl (1.5rem)
+   CARDS — "Fine Paper" Layering
+   surface-container-lowest (#FFFFFF) on surface (#F8F9FA)
+   No borders — use ambient shadows
+   Radius: lg (1rem)
    ──────────────────────────────────────────── */
-.bento-card {
-  background: var(--surface-low);   /* #1c1b1b */
-  border-radius: 1.75rem;
+.card {
+  background: var(--surface-container-lowest);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 40px 0 rgba(25, 28, 29, 0.05);
   transition:
-    background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover → surface_container_high (#2a2a2a) */
-.bento-card:hover {
-  background: var(--surface-high);
+.card:hover {
+  box-shadow: 0 10px 40px 0 rgba(25, 28, 29, 0.08),
+              0 4px 16px 0 rgba(25, 28, 29, 0.04);
+  transform: translateY(-4px);
 }
 
-/* Accent glows on hover (replaces hard borders) */
-.bento-card.accent-cyan:hover {
-  box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.12),
-              0 0 40px rgba(0, 240, 255, 0.08);
+/* Accent glows on hover — primary and secondary tints */
+.card.accent-primary:hover {
+  box-shadow: 0 10px 40px 0 rgba(53, 37, 205, 0.08),
+              0 4px 16px 0 rgba(53, 37, 205, 0.04);
 }
-.bento-card.accent-purple:hover {
-  box-shadow: inset 0 0 0 1px rgba(157, 5, 255, 0.2),
-              0 0 40px rgba(157, 5, 255, 0.08);
-}
-.bento-card.accent-teal:hover {
-  box-shadow: inset 0 0 0 1px rgba(0, 219, 233, 0.15),
-              0 0 40px rgba(0, 219, 233, 0.08);
+.card.accent-secondary:hover {
+  box-shadow: 0 10px 40px 0 rgba(113, 42, 226, 0.08),
+              0 4px 16px 0 rgba(113, 42, 226, 0.04);
 }
 
-/* Service card wrapper – ambient float shadow on hover */
+/* Service card wrapper — editorial float on hover */
 .service-card {
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .service-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 25px 60px -12px rgba(0, 240, 255, 0.08),
-              0 8px 24px -8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 50px -12px rgba(25, 28, 29, 0.10),
+              0 8px 24px -8px rgba(25, 28, 29, 0.06);
 }
 
 /* ────────────────────────────────────────────
-   GLOW BUTTON (Primary)
-   Gradient: primary_container → primary_fixed_dim
-   Hover: outer glow with primary token
+   BUTTONS — "Butonlar"
+   Primary: Gradient (primary → primary-container)
+   xl roundedness (1.5rem)
+   Hover: scale(1.02) + shadow increase
    ──────────────────────────────────────────── */
-.btn-glow {
+.btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 2rem;
-  border-radius: 0.75rem;
-  background: linear-gradient(135deg, var(--primary-container), var(--primary-fixed-dim));
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-container));
   color: var(--on-primary);
   font-weight: 700;
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -290,45 +321,78 @@ p, li, span { color: var(--on-surface-variant); }
   cursor: pointer;
   transition:
     box-shadow 0.3s ease,
-    transform 0.2s ease,
-    filter 0.3s ease;
+    transform 0.2s ease;
 }
-.btn-glow:hover {
-  box-shadow: 0 0 20px rgba(219, 252, 255, 0.35),
-              0 0 40px rgba(0, 240, 255, 0.2);
-  transform: translateY(-2px);
-  filter: brightness(1.05);
+.btn-primary:hover {
+  box-shadow: 0 10px 30px rgba(53, 37, 205, 0.25),
+              0 4px 12px rgba(53, 37, 205, 0.15);
+  transform: scale(1.02);
 }
-.btn-glow:active {
-  transform: scale(0.97);
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+.btn-primary:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px rgba(53, 37, 205, 0.15);
 }
 
-/* Ghost button variant */
-.btn-ghost {
+/* Secondary Button — white surface with primary shadow */
+.btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 2rem;
-  border-radius: 0.75rem;
-  background: transparent;
+  border-radius: 1.5rem;
+  background: var(--surface-container-lowest);
   color: var(--on-surface);
   font-weight: 600;
   font-size: 0.95rem;
-  border: 1px solid rgba(59, 73, 75, 0.15); /* Ghost border */
+  border: none;
   cursor: pointer;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 4px 16px rgba(53, 37, 205, 0.06);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
-.btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(59, 73, 75, 0.3);
+.btn-secondary:hover {
+  background: var(--surface-container-low);
+  box-shadow: 0 8px 24px rgba(53, 37, 205, 0.10);
+  transform: scale(1.02);
 }
 
 /* ────────────────────────────────────────────
-   PULSING BADGE – "Live AI" indicator
-   Base: secondary_container (#9d05ff)
-   Ring: pulses secondary (#dfb7ff)
+   ACCENT DOT (replaces "laser-dot")
+   primary (#3525CD) — subtle focal indicator
+   ──────────────────────────────────────────── */
+.accent-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--primary);
+  box-shadow: 0 0 8px rgba(53, 37, 205, 0.3);
+  flex-shrink: 0;
+}
+
+/* ────────────────────────────────────────────
+   "Case Study" Chip — Glassmorphic pill
+   secondary text, e.g., "E-Ticaret", "Kurumsal"
+   ──────────────────────────────────────────── */
+.case-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  background: rgba(248, 249, 250, 0.70);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(199, 196, 216, 0.15);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--secondary);
+  letter-spacing: 0.02em;
+}
+
+/* ────────────────────────────────────────────
+   PULSING BADGE — Status indicator
+   base: primary (#3525CD) with soft glow
    ──────────────────────────────────────────── */
 .pulsing-badge {
   position: relative;
@@ -342,8 +406,8 @@ p, li, span { color: var(--on-surface-variant); }
   width: 8px;
   height: 8px;
   border-radius: 9999px;
-  background: var(--secondary-container);
-  box-shadow: 0 0 8px rgba(157, 5, 255, 0.6);
+  background: var(--primary);
+  box-shadow: 0 0 8px rgba(53, 37, 205, 0.4);
   flex-shrink: 0;
 }
 
@@ -352,7 +416,7 @@ p, li, span { color: var(--on-surface-variant); }
   position: absolute;
   inset: -3px;
   border-radius: 9999px;
-  border: 1.5px solid var(--secondary);
+  border: 1.5px solid var(--primary-fixed-dim);
   animation: badgePulse 2s ease-in-out infinite;
 }
 
@@ -363,13 +427,15 @@ p, li, span { color: var(--on-surface-variant); }
 }
 
 /* ────────────────────────────────────────────
-   INPUT FIELDS – Ghost Border / Underline
+   INPUT FIELDS — "Giriş Alanları"
+   Focus: secondary (#712AE2) ghost border (20%) + 4px glow
+   Labels: label-md uppercase above field
    ──────────────────────────────────────────── */
 .form-input {
   width: 100%;
-  background: rgba(42, 42, 42, 0.4);
-  border: 1px solid rgba(59, 73, 75, 0.15); /* Ghost Border */
-  border-radius: 0.875rem;
+  background: var(--surface-container-lowest);
+  border: 1px solid rgba(199, 196, 216, 0.15); /* Ghost Border */
+  border-radius: 1rem;
   padding: 0.875rem 1rem;
   color: var(--on-surface);
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -382,50 +448,48 @@ p, li, span { color: var(--on-surface-variant); }
 }
 
 .form-input::placeholder {
-  color: rgba(132, 148, 149, 0.5);
+  color: rgba(68, 71, 79, 0.4);
 }
 
-/* Active: border glows with primary, bg shifts to surface_bright */
+/* Focus: secondary ghost border + glow */
 .form-input:focus {
-  border-color: rgba(219, 252, 255, 0.4);
-  background: rgba(58, 57, 57, 0.5); /* surface_bright */
-  box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.15),
-              0 0 16px rgba(0, 240, 255, 0.08);
+  border-color: rgba(113, 42, 226, 0.20);
+  background: var(--surface-container-lowest);
+  box-shadow: 0 0 0 4px rgba(113, 42, 226, 0.08);
 }
 
-/* Select specific */
 .form-input option {
-  background: #1c1b1b;
+  background: #FFFFFF;
   color: var(--on-surface);
 }
 
 /* ────────────────────────────────────────────
-   Why-Us Grid Cells
-   No dividers; use surface tonal transitions
+   Feature Cells — Why-Us Grid
+   No dividers; use tonal transitions
    ──────────────────────────────────────────── */
 .feature-cell {
-  background: var(--surface-low);   /* #1c1b1b */
+  background: var(--surface-container-lowest);
   padding: 2.5rem;
   transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .feature-cell:nth-child(even) {
-  background: var(--surface-lowest); /* alternating tonal shift */
+  background: var(--surface); /* alternating tonal shift */
 }
 .feature-cell:hover {
-  background: var(--surface-high);
+  background: var(--surface-container-low);
 }
 
 /* ────────────────────────────────────────────
-   Data Rows / Lists
-   No horizontal dividers – 24px vertical gutters
-   Alternating tonal rows
+   Progressive Disclosure Accordion
+   No borders — background shifts on open
    ──────────────────────────────────────────── */
-.data-row {
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
+.accordion-item {
+  background: var(--surface-container-lowest);
+  transition: background 0.3s ease;
 }
-.data-row:nth-child(odd)  { background: var(--surface-low); }
-.data-row:nth-child(even) { background: var(--surface-lowest); }
+.accordion-item.open {
+  background: var(--surface-container-low);
+}
 
 /* ────────────────────────────────────────────
    Scroll Reveal
@@ -483,10 +547,6 @@ p, li, span { color: var(--on-surface-variant); }
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
-@keyframes scanline {
-  0%   { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
 
 .animate-fade-up    { animation: fadeUp    0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 .animate-fade-in    { animation: fadeIn    0.6s  ease forwards; }
@@ -502,29 +562,15 @@ p, li, span { color: var(--on-surface-variant); }
 
 /* ────────────────────────────────────────────
    Section Transitions (Tonal – no lines)
-   surface_container_lowest → surface_container_low
    ──────────────────────────────────────────── */
-.section-lowest { background: var(--surface-lowest); }
-.section-low    { background: var(--surface-low);    }
-.section-base   { background: var(--surface);        }
+.section-surface  { background: var(--surface); }
+.section-low      { background: var(--surface-container-low); }
+.section-white    { background: var(--surface-container-lowest); }
 
 /* ────────────────────────────────────────────
-   Utility – Ghost Border (accessibility fallback)
-   outline_variant (#3b494b) at 15% opacity
+   Ghost Border (accessibility fallback)
+   outline_variant (#C7C4D8) at 15% opacity
    ──────────────────────────────────────────── */
 .ghost-border {
-  border: 1px solid rgba(59, 73, 75, 0.15);
-}
-
-/* ────────────────────────────────────────────
-   Neon Dot Accent (Laser Sight)
-   primary_container (#00f0ff) – small focal points
-   ──────────────────────────────────────────── */
-.laser-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background: var(--primary-container);
-  box-shadow: 0 0 8px var(--primary-container), 0 0 16px rgba(0, 240, 255, 0.4);
-  flex-shrink: 0;
+  border: 1px solid rgba(199, 196, 216, 0.15);
 }

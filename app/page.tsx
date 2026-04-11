@@ -10,9 +10,9 @@ import {
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────
-   Pulsing Badge – Live AI Indicator
-   base: secondary_container (#9d05ff)
-   ring: secondary (#dfb7ff) pulsing 0→100% opacity
+   Pulsing Badge – Status Indicator
+   base: primary (#3525CD)
+   ring: primary-fixed-dim (#6366F1) pulsing
    ───────────────────────────────────────────────────────── */
 function PulsingBadge({ label }: { label: string }) {
   return (
@@ -21,11 +21,11 @@ function PulsingBadge({ label }: { label: string }) {
       <span
         style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.625rem",
+          fontSize: "0.75rem",
           fontWeight: 600,
           textTransform: "uppercase" as const,
-          letterSpacing: "0.1em",
-          color: "#dfb7ff",
+          letterSpacing: "0.05em",
+          color: "#3525CD",
         }}
       >
         {label}
@@ -35,10 +35,10 @@ function PulsingBadge({ label }: { label: string }) {
 }
 
 /* ─────────────────────────────────────────────────────────
-   Bento Card — Obsidian Forge version
-   Surface: surface_container_low (#1c1b1b)
-   No hard borders — tonal transitions define space
-   Radius: xl (1.75rem inner, 2rem wrapper)
+   Bento Card — Fluid Precision version
+   Surface: surface-container-lowest (#FFFFFF)
+   No hard borders — ambient shadows define space
+   Radius: xl (1.5rem inner, 2rem wrapper)
    ───────────────────────────────────────────────────────── */
 interface BentoCardProps {
   icon: React.ReactNode;
@@ -55,22 +55,21 @@ interface BentoCardProps {
 
 function BentoCard({
   icon, title, description, features, badge, liveAI,
-  accentClass = "accent-cyan", children, className, delay,
+  accentClass = "accent-primary", children, className, delay,
 }: BentoCardProps) {
   return (
     <div
       className={cn("service-card reveal list-none", className)}
       style={delay ? { transitionDelay: delay } : undefined}
     >
-      <div className="relative h-full rounded-[2rem] border-[0.75px] border-white/[0.03] p-2">
+      <div className="relative h-full rounded-[2rem] border-[0.75px] border-[rgba(199,196,216,0.10)] p-2">
         <GlowingEffect spread={44} glow={true} disabled={false} proximity={72} inactiveZone={0.01} borderWidth={3} />
-        <div className={cn("bento-card relative h-full rounded-[1.75rem] p-10 flex flex-col justify-between overflow-hidden", accentClass)}>
+        <div className={cn("card relative h-full rounded-[1.75rem] p-10 flex flex-col justify-between overflow-hidden", accentClass)}>
 
-          {/* Badge – surface_container_highest nested element */}
+          {/* Badge — subtle tinted chip */}
           {badge && (
             <span
-              className="absolute top-5 right-5 label-tag px-3 py-1.5 rounded-full"
-              style={{ background: "rgba(53,53,52,0.8)", color: "#b9cacb" }}
+              className="case-chip absolute top-5 right-5"
             >
               {badge}
             </span>
@@ -84,31 +83,30 @@ function BentoCard({
           )}
 
           <div className="relative z-10">
-            {/* Icon housed in elevated surface_container_highest */}
+            {/* Icon in elevated surface */}
             <div
               className="w-14 h-14 rounded-2xl flex items-center justify-center mb-7"
-              style={{ background: "rgba(53,53,52,0.6)" }}
+              style={{ background: "rgba(53, 37, 205, 0.06)" }}
             >
               {icon}
             </div>
 
-            <h4 className="font-headline text-2xl font-bold mb-4" style={{ color: "#e5e2e1", letterSpacing: "-0.02em" }}>
+            <h4 className="font-headline text-2xl font-bold mb-4" style={{ color: "#191C1D", letterSpacing: "-0.01em" }}>
               {title}
             </h4>
 
             {description && (
-              <p className="text-sm leading-relaxed mb-6" style={{ color: "#b9cacb" }}>
+              <p className="text-sm leading-relaxed mb-6" style={{ color: "#44474F", lineHeight: "1.6" }}>
                 {description}
               </p>
             )}
 
-            {/* Feature list — no dividers, just vertical spacing */}
+            {/* Feature list — no dividers, vertical spacing */}
             {features && (
               <ul className="space-y-3">
                 {features.map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-sm" style={{ color: "#b9cacb" }}>
-                    {/* Laser sight accent dot */}
-                    <span className="laser-dot flex-shrink-0" />
+                  <li key={f} className="flex items-center gap-3 text-sm" style={{ color: "#44474F" }}>
+                    <span className="accent-dot flex-shrink-0" />
                     <span>{f}</span>
                   </li>
                 ))}
@@ -141,24 +139,22 @@ function FeatureCell({ icon, title, description, delay, index }: FeatureCellProp
       className="reveal feature-cell"
       style={{
         transitionDelay: delay,
-        /* alternating tonal bg per spec — no dividers */
-        background: index % 2 === 0 ? "#1c1b1b" : "#131313",
+        background: index % 2 === 0 ? "#FFFFFF" : "#F8F9FA",
       }}
     >
-      {/* Icon in surface_container_highest */}
       <div
         className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
-        style={{ background: "rgba(53,53,52,0.7)" }}
+        style={{ background: "rgba(53, 37, 205, 0.06)" }}
       >
         {icon}
       </div>
       <h5
         className="font-headline text-lg font-bold mb-3"
-        style={{ color: "#e5e2e1", letterSpacing: "-0.01em" }}
+        style={{ color: "#191C1D", letterSpacing: "-0.01em" }}
       >
         {title}
       </h5>
-      <p className="text-sm leading-relaxed" style={{ color: "#b9cacb" }}>
+      <p className="text-sm leading-relaxed" style={{ color: "#44474F", lineHeight: "1.6" }}>
         {description}
       </p>
     </div>
@@ -166,7 +162,7 @@ function FeatureCell({ icon, title, description, delay, index }: FeatureCellProp
 }
 
 /* ─────────────────────────────────────────────────────────
-   Main Page
+   Main Page — The Editorial Architect
    ───────────────────────────────────────────────────────── */
 export default function Home() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -189,14 +185,14 @@ export default function Home() {
     return () => io.disconnect();
   }, []);
 
-  /* Navbar ambient glow on scroll */
+  /* Navbar shadow on scroll */
   useEffect(() => {
     const navbar = document.getElementById("navbar");
     const onScroll = () => {
       if (navbar) {
         navbar.style.boxShadow = window.scrollY > 50
-          ? "0 0 60px rgba(0,240,255,0.08), 0 1px 0 rgba(59,73,75,0.15)"
-          : "0 0 40px rgba(0,240,255,0.04)";
+          ? "0 4px 24px rgba(25,28,29,0.06), 0 1px 0 rgba(199,196,216,0.15)"
+          : "0 1px 0 rgba(199,196,216,0.15)";
       }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -240,11 +236,11 @@ export default function Home() {
   return (
     <>
       {/* ══════════════════ NAVIGATION ══════════════════ */}
-      {/* Glassmorphism: surface (#131313) at 60% + blur(20px) */}
+      {/* Glassmorphism: surface (#F8F9FA) at 70% + blur(20px) */}
       <header
         id="navbar"
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-        style={{ background: "rgba(14,14,14,0.65)" }}
+        style={{ background: "rgba(248,249,250,0.70)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
       >
         <nav className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -253,26 +249,25 @@ export default function Home() {
             <a href="#hero" className="flex items-center gap-3 group">
               <div
                 className="w-8 h-8 rounded-xl flex items-center justify-center transition-all group-hover:scale-105"
-                style={{ background: "linear-gradient(135deg, #00f0ff, #00dbe9)" }}
+                style={{ background: "linear-gradient(135deg, #3525CD, #4F46E5)" }}
               >
-                <svg className="w-4 h-4" fill="none" stroke="#00363a" viewBox="0 0 24 24" strokeWidth={2.5} aria-hidden="true">
+                <svg className="w-4 h-4" fill="none" stroke="#FFFFFF" viewBox="0 0 24 24" strokeWidth={2.5} aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              {/* Chrome gradient on logo text */}
-              <span className="font-headline text-xl font-bold chrome-text tracking-tight">
+              <span className="font-headline text-xl font-bold tracking-tight editorial-text">
                 Silverstone AI
               </span>
             </a>
 
-            {/* Desktop nav — labels uppercase per spec */}
+            {/* Desktop nav — label-md uppercase */}
             <ul className="hidden md:flex items-center gap-8">
               {navLinks.map(([href, label]) => (
                 <li key={href}>
                   <a
                     href={href}
-                    className="label-tag transition-colors duration-300 hover:text-[#00f0ff]"
-                    style={{ color: "#b9cacb" }}
+                    className="label-tag transition-colors duration-300 hover:text-[#3525CD]"
+                    style={{ color: "#44474F" }}
                   >
                     {label}
                   </a>
@@ -280,8 +275,8 @@ export default function Home() {
               ))}
             </ul>
 
-            {/* Glow CTA */}
-            <a href="#contact" className="hidden md:inline-flex btn-glow">
+            {/* Primary CTA Button */}
+            <a href="#contact" className="hidden md:inline-flex btn-primary">
               Hemen Başlayalım
             </a>
 
@@ -291,7 +286,7 @@ export default function Home() {
               id="hamburger"
               onClick={toggleMobile}
               className="md:hidden p-2 rounded-xl transition-colors"
-              style={{ color: "#b9cacb" }}
+              style={{ color: "#44474F" }}
               aria-label="Menüyü aç/kapat"
               aria-expanded="false"
               aria-controls="mobile-menu"
@@ -318,7 +313,7 @@ export default function Home() {
                 <li key={href}>
                   <a
                     href={href}
-                    className="block px-4 py-3 rounded-xl label-tag transition-all hover:bg-white/5 hover:text-[#00f0ff]"
+                    className="block px-4 py-3 rounded-xl label-tag transition-all hover:bg-[rgba(53,37,205,0.04)] hover:text-[#3525CD]"
                     onClick={closeMobile}
                   >
                     {label}
@@ -326,7 +321,7 @@ export default function Home() {
                 </li>
               ))}
               <li className="pt-2">
-                <a href="#contact" onClick={closeMobile} className="block text-center btn-glow w-full">
+                <a href="#contact" onClick={closeMobile} className="block text-center btn-primary w-full">
                   Hemen Başlayalım
                 </a>
               </li>
@@ -339,52 +334,56 @@ export default function Home() {
       <section id="hero" className="hero-section min-h-screen flex items-center pt-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-28 relative z-10 grid lg:grid-cols-2 gap-20 items-center w-full">
 
-          {/* Left */}
+          {/* Left — Editorial text, tight alignment */}
           <div>
-            {/* Live AI Badge — pulsing secondary_container */}
+            {/* Status Badge */}
             <div
               className="inline-flex items-center gap-3 px-4 py-2 rounded-full mb-8 animate-fade-in"
-              style={{ background: "rgba(19,19,19,0.6)", backdropFilter: "blur(20px)", border: "1px solid rgba(59,73,75,0.15)" }}
+              style={{
+                background: "rgba(248,249,250,0.70)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(199,196,216,0.15)",
+              }}
             >
               <PulsingBadge label="Dijital Dönüşümde Güvenilir Ortağınız" />
             </div>
 
-            {/* Display headline — Plus Jakarta Sans, -0.04em tracking */}
+            {/* Display headline — Manrope, -0.02em tracking */}
             <h1
-              className="font-headline font-extrabold leading-none mb-6 chrome-text animate-fade-up"
-              style={{ fontSize: "clamp(2.8rem, 6vw, 4rem)", letterSpacing: "-0.04em" }}
+              className="font-headline font-bold leading-tight mb-6 editorial-text animate-fade-up"
+              style={{ fontSize: "clamp(2.8rem, 6vw, 3.5rem)", letterSpacing: "-0.02em", lineHeight: "1.1" }}
             >
               Geleneksel İşletmeleri Geleceğin Teknolojisine Bağlıyoruz
             </h1>
 
-            {/* Sub — on_surface_variant, never pure white */}
-            <p className="text-xl leading-relaxed mb-10 max-w-xl animate-fade-up delay-150" style={{ color: "#b9cacb" }}>
+            {/* Sub — on-surface-variant */}
+            <p className="text-xl leading-relaxed mb-10 max-w-xl animate-fade-up delay-150" style={{ color: "#44474F", lineHeight: "1.6" }}>
               Web Tasarım, n8n Otomasyonları ve AI Çözümleri ile işletmenizi dijital çağa adım atın.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 mb-14 animate-fade-up delay-300">
-              <a href="#contact" className="btn-glow">
+              <a href="#contact" className="btn-primary">
                 Hemen Başlayalım
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="#services" className="btn-ghost">
+              <a href="#services" className="btn-secondary">
                 Hizmetlerimizi Keşfet
               </a>
             </div>
 
-            {/* Stats — glass panel, tonal surface */}
+            {/* Stats — white card with ambient shadow */}
             <div
-              className="flex items-center gap-8 py-5 px-8 rounded-2xl animate-fade-up delay-450"
-              style={{ background: "rgba(28,27,27,0.6)", backdropFilter: "blur(20px)", border: "1px solid rgba(59,73,75,0.12)" }}
+              className="flex items-center gap-8 py-5 px-8 rounded-2xl animate-fade-up delay-450 ambient-shadow"
+              style={{ background: "#FFFFFF" }}
             >
               {[["50+", "Tamamlanan Proje"], ["30+", "Mutlu Müşteri"], ["3x", "Daha Hızlı Süreç"]].map(([num, label], i) => (
                 <div
                   key={label}
-                  className={cn("text-center", i > 0 && "border-l border-[rgba(59,73,75,0.2)] pl-8")}
+                  className={cn("text-center", i > 0 && "border-l pl-8")}
+                  style={i > 0 ? { borderColor: "rgba(199,196,216,0.2)" } : undefined}
                 >
-                  {/* Plus Jakarta Sans for numbers */}
-                  <div className="font-headline text-2xl font-bold" style={{ color: "#00dbe9" }}>{num}</div>
+                  <div className="font-headline text-2xl font-bold" style={{ color: "#3525CD" }}>{num}</div>
                   <div className="label-tag mt-1">{label}</div>
                 </div>
               ))}
@@ -393,62 +392,66 @@ export default function Home() {
 
           {/* Right – Floating Visual Card */}
           <div className="relative hidden lg:block animate-float" aria-hidden="true">
-            {/* Ambient glow halo behind card */}
+            {/* Ambient glow halo */}
             <div
               className="absolute inset-0 rounded-3xl pointer-events-none"
-              style={{ boxShadow: "0 0 80px rgba(0,240,255,0.06), 0 0 160px rgba(157,5,255,0.04)" }}
+              style={{ boxShadow: "0 20px 60px rgba(53,37,205,0.08), 0 10px 30px rgba(113,42,226,0.04)" }}
             />
 
             <div
-              className="relative aspect-square rounded-3xl overflow-hidden"
-              style={{ background: "rgba(19,19,19,0.60)", backdropFilter: "blur(20px)", border: "1px solid rgba(59,73,75,0.12)" }}
+              className="relative aspect-square rounded-3xl overflow-hidden ambient-shadow-lg"
+              style={{
+                background: "rgba(248,249,250,0.70)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(199,196,216,0.15)",
+              }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(0,240,255,0.05)] via-transparent to-[rgba(157,5,255,0.06)]" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(53,37,205,0.04)] via-transparent to-[rgba(113,42,226,0.04)]" />
 
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 p-10">
-                {/* Icon cluster — nested in surface_container_highest */}
+                {/* Icon cluster */}
                 <div className="grid grid-cols-3 gap-5">
                   {[
-                    { icon: <Monitor className="w-7 h-7 text-[#00f0ff]" />, label: "Web Tasarım" },
-                    { icon: <Workflow className="w-7 h-7 text-[#dfb7ff]" />,   label: "Otomasyon" },
-                    { icon: <Brain    className="w-7 h-7 text-[#00dbe9]" />, label: "AI" },
+                    { icon: <Monitor className="w-7 h-7 text-[#3525CD]" />, label: "Web Tasarım" },
+                    { icon: <Workflow className="w-7 h-7 text-[#712AE2]" />,   label: "Otomasyon" },
+                    { icon: <Brain    className="w-7 h-7 text-[#4F46E5]" />, label: "AI" },
                   ].map(({ icon, label }) => (
                     <div
                       key={label}
                       className="w-20 h-20 rounded-2xl flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 cursor-default"
-                      style={{ background: "rgba(53,53,52,0.7)" }}
+                      style={{ background: "rgba(53,37,205,0.05)" }}
                       title={label}
                     >
                       {icon}
-                      <span className="label-tag">{label}</span>
+                      <span className="label-tag" style={{ color: "#44474F" }}>{label}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Mini stat card — surface_container_highest nested */}
+                {/* Mini stat card */}
                 <div
-                  className="w-full rounded-2xl px-6 py-4 flex items-center justify-between"
-                  style={{ background: "rgba(53,53,52,0.6)", border: "1px solid rgba(59,73,75,0.12)" }}
+                  className="w-full rounded-2xl px-6 py-4 flex items-center justify-between ambient-shadow"
+                  style={{ background: "#FFFFFF" }}
                 >
                   <div>
                     <p className="label-tag mb-1">Proje başarı oranı</p>
-                    <p className="font-headline text-2xl font-bold" style={{ color: "#00f0ff" }}>%98+</p>
+                    <p className="font-headline text-2xl font-bold" style={{ color: "#3525CD" }}>%98+</p>
                   </div>
-                  <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: "#353534" }}>
+                  <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: "#EDEEEF" }}>
                     <div
                       className="h-full rounded-full"
-                      style={{ width: "98%", background: "linear-gradient(90deg, #00f0ff, #00dbe9)" }}
+                      style={{ width: "98%", background: "linear-gradient(90deg, #3525CD, #4F46E5)" }}
                     />
                   </div>
                 </div>
 
-                {/* Availability — green ambient pill */}
+                {/* Availability pill */}
                 <div
                   className="flex items-center gap-2.5 px-5 py-2.5 rounded-full"
-                  style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.15)" }}
+                  style={{ background: "rgba(16,185,129,0.06)", border: "1px solid rgba(16,185,129,0.12)" }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-slow inline-block" />
-                  <span className="label-tag" style={{ color: "#34d399" }}>Şu an müsaitiz</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse-slow inline-block" />
+                  <span className="label-tag" style={{ color: "#059669" }}>Şu an müsaitiz</span>
                 </div>
               </div>
             </div>
@@ -456,35 +459,29 @@ export default function Home() {
             {/* Decorative ambient blobs */}
             <div
               className="absolute -top-8 -right-8 w-28 h-28 rounded-full pointer-events-none"
-              style={{ background: "rgba(0,240,255,0.12)", filter: "blur(40px)", animation: "pulseSlow 4s ease-in-out infinite" }}
+              style={{ background: "rgba(53,37,205,0.08)", filter: "blur(40px)", animation: "pulseSlow 4s ease-in-out infinite" }}
             />
             <div
               className="absolute -bottom-12 -left-12 w-44 h-44 rounded-full pointer-events-none"
-              style={{ background: "rgba(157,5,255,0.07)", filter: "blur(50px)" }}
+              style={{ background: "rgba(113,42,226,0.05)", filter: "blur(50px)" }}
             />
           </div>
         </div>
       </section>
 
       {/* ══════════════════ SERVICES – BENTO GRID ══════════════════ */}
-      {/*
-          Obsidian Forge Bento modularism:
-          – surface_container_low (#1c1b1b) cards
-          – Intentional asymmetry via varying col-spans
-          – No dividers inside cards; use body-sm spacing (1.5–2rem)
-      */}
-      <section id="services" className="py-28" style={{ background: "#0e0e0e" }}>
+      <section id="services" className="py-28" style={{ background: "#F1F2F3" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
           {/* Section header */}
           <div className="text-center mb-20 reveal">
             <div className="inline-flex items-center gap-2 mb-6">
-              <span className="laser-dot" />
-              <span className="label-tag" style={{ color: "#00f0ff" }}>Uzmanlık Alanlarımız</span>
+              <span className="accent-dot" />
+              <span className="label-tag" style={{ color: "#3525CD" }}>Uzmanlık Alanlarımız</span>
             </div>
             <h2
-              className="font-headline font-bold chrome-text"
-              style={{ fontSize: "clamp(2.2rem, 4.5vw, 3rem)", letterSpacing: "-0.03em" }}
+              className="font-headline font-bold editorial-text"
+              style={{ fontSize: "clamp(2.2rem, 4.5vw, 3rem)", letterSpacing: "-0.02em" }}
             >
               İşinizi Büyüten Çözümler
             </h2>
@@ -495,41 +492,41 @@ export default function Home() {
 
             {/* Web Tasarım — wide (8 cols) */}
             <BentoCard
-              icon={<Monitor className="w-7 h-7 text-[#00f0ff]" />}
+              icon={<Monitor className="w-7 h-7 text-[#3525CD]" />}
               title="Web Tasarım"
               features={["Özel tasarım & kodlama", "SEO optimizasyonu", "Performans odaklı mimari"]}
-              accentClass="accent-cyan"
+              accentClass="accent-primary"
               className="md:col-span-8"
               delay="0s"
             />
 
             {/* n8n — narrow (4 cols) */}
             <BentoCard
-              icon={<Workflow className="w-7 h-7 text-[#dfb7ff]" />}
+              icon={<Workflow className="w-7 h-7 text-[#712AE2]" />}
               title="n8n Otomasyonları"
               description="İş akışlarınızı otonom hale getirin. CRM, E-posta ve veri tabanlarınızı kusursuz bir döngüde birleştiriyoruz."
-              accentClass="accent-purple"
+              accentClass="accent-secondary"
               className="md:col-span-4"
               delay="0.08s"
             >
               {/* Tonal separator — no divider line, just vertical spacing */}
               <div className="mt-8 pt-2">
-                <span className="label-tag" style={{ color: "#dfb7ff" }}>Yüksek Verimlilik</span>
+                <span className="label-tag" style={{ color: "#712AE2" }}>Yüksek Verimlilik</span>
               </div>
             </BentoCard>
 
-            {/* AI Agents — full width (12 cols) with visual panel */}
+            {/* AI Agents — full width (12 cols) */}
             <div
               className="service-card reveal list-none md:col-span-12"
               style={{ transitionDelay: "0.16s" }}
             >
-              <div className="relative h-full rounded-[2rem] border-[0.75px] border-white/[0.03] p-2">
+              <div className="relative h-full rounded-[2rem] border-[0.75px] border-[rgba(199,196,216,0.10)] p-2">
                 <GlowingEffect spread={60} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={3} />
                 <div
-                  className="bento-card accent-teal relative h-full rounded-[1.75rem] p-10 flex flex-col md:flex-row gap-12 items-center overflow-hidden"
+                  className="card accent-primary relative h-full rounded-[1.75rem] p-10 flex flex-col md:flex-row gap-12 items-center overflow-hidden"
                 >
                   {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[rgba(0,240,255,0.03)] via-transparent to-[rgba(157,5,255,0.03)] pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[rgba(53,37,205,0.03)] via-transparent to-[rgba(113,42,226,0.03)] pointer-events-none" />
 
                   <div className="flex-1 relative z-10">
                     {/* Live AI badge */}
@@ -540,36 +537,40 @@ export default function Home() {
                     {/* Icon */}
                     <div
                       className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
-                      style={{ background: "rgba(53,53,52,0.6)" }}
+                      style={{ background: "rgba(53, 37, 205, 0.06)" }}
                     >
-                      <Brain className="w-7 h-7 text-[#00dbe9]" />
+                      <Brain className="w-7 h-7 text-[#4F46E5]" />
                     </div>
 
                     <h3
                       className="font-headline font-bold mb-4"
-                      style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", letterSpacing: "-0.03em", color: "#e5e2e1" }}
+                      style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", letterSpacing: "-0.02em", color: "#191C1D" }}
                     >
                       AI Ajanlar
                     </h3>
-                    <p className="leading-relaxed mb-8 max-w-xl" style={{ color: "#b9cacb" }}>
+                    <p className="leading-relaxed mb-8 max-w-xl" style={{ color: "#44474F", lineHeight: "1.6" }}>
                       İşletmenize özel AI chatbotlar ve veri analiz motorları geliştiriyoruz. Dokümanlarınızı anlayan ve müşterilerinizle gerçek zamanlı konuşan sistemler.
                     </p>
                     <a
                       href="#contact"
                       className="inline-flex items-center gap-2 font-semibold transition-all group/btn hover:gap-3"
-                      style={{ color: "#00f0ff" }}
+                      style={{ color: "#3525CD" }}
                     >
                       Hemen Başlayın
                       <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                     </a>
                   </div>
 
-                  {/* Visual panel — glass nested in bento card */}
+                  {/* Visual panel — glass nested in card */}
                   <div
                     className="w-full md:w-2/5 aspect-[4/3] rounded-2xl overflow-hidden flex flex-col gap-3 p-6 relative z-10"
-                    style={{ background: "rgba(14,14,14,0.65)", backdropFilter: "blur(20px)", border: "1px solid rgba(59,73,75,0.12)" }}
+                    style={{
+                      background: "rgba(248,249,250,0.80)",
+                      backdropFilter: "blur(20px)",
+                      border: "1px solid rgba(199,196,216,0.15)",
+                    }}
                   >
-                    <div className="label-tag mb-2" style={{ color: "#00f0ff" }}>AI Ajan Demo</div>
+                    <div className="label-tag mb-2" style={{ color: "#3525CD" }}>AI Ajan Demo</div>
 
                     {/* Chat bubbles — no dividers */}
                     {[
@@ -582,8 +583,8 @@ export default function Home() {
                           className="px-3.5 py-2 rounded-2xl text-[11px] leading-snug max-w-[80%]"
                           style={
                             msg.role === "ai"
-                              ? { background: "rgba(0,240,255,0.10)", color: "#00f0ff", border: "1px solid rgba(0,240,255,0.15)" }
-                              : { background: "rgba(53,53,52,0.8)", color: "#b9cacb" }
+                              ? { background: "rgba(53,37,205,0.06)", color: "#3525CD", border: "1px solid rgba(53,37,205,0.10)" }
+                              : { background: "#EDEEEF", color: "#44474F" }
                           }
                         >
                           {msg.text}
@@ -595,13 +596,13 @@ export default function Home() {
                     <div className="flex justify-start mt-auto">
                       <div
                         className="px-4 py-2.5 rounded-2xl flex items-center gap-1"
-                        style={{ background: "rgba(0,240,255,0.08)", border: "1px solid rgba(0,240,255,0.12)" }}
+                        style={{ background: "rgba(53,37,205,0.05)", border: "1px solid rgba(53,37,205,0.08)" }}
                       >
                         {[0, 1, 2].map(i => (
                           <span
                             key={i}
                             className="w-1.5 h-1.5 rounded-full animate-pulse-slow"
-                            style={{ background: "#00f0ff", animationDelay: `${i * 0.2}s` }}
+                            style={{ background: "#3525CD", animationDelay: `${i * 0.2}s` }}
                           />
                         ))}
                       </div>
@@ -615,31 +616,31 @@ export default function Home() {
       </section>
 
       {/* ══════════════════ WHY US ══════════════════ */}
-      {/* surface sits against surface_lowest — tonal transition, no line */}
-      <section id="why-us" className="py-28" style={{ background: "#131313" }}>
+      {/* surface sits against surface-container-low — tonal transition, no line */}
+      <section id="why-us" className="py-28" style={{ background: "#F8F9FA" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
           {/* Header — intentional asymmetry */}
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div className="max-w-2xl reveal">
               <div className="inline-flex items-center gap-2 mb-5">
-                <span className="laser-dot" />
-                <span className="label-tag" style={{ color: "#00f0ff" }}>Neden Silverstone?</span>
+                <span className="accent-dot" />
+                <span className="label-tag" style={{ color: "#3525CD" }}>Neden Silverstone?</span>
               </div>
               <h2
-                className="font-headline font-bold chrome-text"
-                style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", letterSpacing: "-0.03em" }}
+                className="font-headline font-bold editorial-text"
+                style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", letterSpacing: "-0.02em" }}
               >
                 Farkımızı Hissedin
               </h2>
             </div>
 
-            {/* Vertical rule — ghost border, never full-opacity */}
             <p
               className="reveal text-sm leading-relaxed max-w-sm pl-6"
               style={{
-                color: "#b9cacb",
-                borderLeft: "1px solid rgba(59,73,75,0.15)",
+                color: "#44474F",
+                borderLeft: "2px solid rgba(53,37,205,0.15)",
+                lineHeight: "1.6",
                 transitionDelay: "0.1s",
               }}
             >
@@ -647,15 +648,15 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 3-col grid — no dividers, alternating surface tones */}
-          <div className="grid grid-cols-1 md:grid-cols-3 rounded-[2rem] overflow-hidden">
+          {/* 3-col grid — no dividers, alternating surfaces */}
+          <div className="grid grid-cols-1 md:grid-cols-3 rounded-[2rem] overflow-hidden ambient-shadow-lg">
             {[
-              { icon: <Code2 className="w-6 h-6 text-[#00f0ff]" />, title: "Özel Kodlama",         desc: "Hazır şablonlar yerine, markanızın DNA'sına uygun özel çözümler üretiyoruz." },
-              { icon: <Cloud className="w-6 h-6 text-[#dfb7ff]" />, title: "Profesyonel Barındırma", desc: "Dünya standartlarında cloud altyapısı ile %99.9 uptime garantisi." },
-              { icon: <Leaf  className="w-6 h-6 text-[#00dbe9]" />, title: "Sürdürülebilir Çözümler", desc: "Gelecekte de değerini koruyan, genişleyebilir teknolojik mimari." },
-              { icon: <Zap   className="w-6 h-6 text-[#00f0ff]" />, title: "Hızlı Teslimat",       desc: "Agile süreç yönetimi ile projelerinizi tam zamanında yayına alıyoruz." },
-              { icon: <MessageSquare className="w-6 h-6 text-[#dfb7ff]" />, title: "Şeffaf İletişim", desc: "Projenin her aşamasında düzenli raporlama ve açık diyalog." },
-              { icon: <ShieldCheck   className="w-6 h-6 text-[#00dbe9]" />, title: "Güvenli & Bakımlı", desc: "7/24 güvenlik izleme ve sürekli teknik destek ile içiniz rahat olsun." },
+              { icon: <Code2 className="w-6 h-6 text-[#3525CD]" />, title: "Özel Kodlama",         desc: "Hazır şablonlar yerine, markanızın DNA'sına uygun özel çözümler üretiyoruz." },
+              { icon: <Cloud className="w-6 h-6 text-[#712AE2]" />, title: "Profesyonel Barındırma", desc: "Dünya standartlarında cloud altyapısı ile %99.9 uptime garantisi." },
+              { icon: <Leaf  className="w-6 h-6 text-[#4F46E5]" />, title: "Sürdürülebilir Çözümler", desc: "Gelecekte de değerini koruyan, genişleyebilir teknolojik mimari." },
+              { icon: <Zap   className="w-6 h-6 text-[#3525CD]" />, title: "Hızlı Teslimat",       desc: "Agile süreç yönetimi ile projelerinizi tam zamanında yayına alıyoruz." },
+              { icon: <MessageSquare className="w-6 h-6 text-[#712AE2]" />, title: "Şeffaf İletişim", desc: "Projenin her aşamasında düzenli raporlama ve açık diyalog." },
+              { icon: <ShieldCheck   className="w-6 h-6 text-[#4F46E5]" />, title: "Güvenli & Bakımlı", desc: "7/24 güvenlik izleme ve sürekli teknik destek ile içiniz rahat olsun." },
             ].map(({ icon, title, desc }, i) => (
               <FeatureCell
                 key={title}
@@ -671,26 +672,25 @@ export default function Home() {
       </section>
 
       {/* ══════════════════ CONTACT ══════════════════ */}
-      {/* Back to surface_lowest — tonal transition */}
-      <section id="contact" className="py-28" style={{ background: "#0e0e0e" }}>
+      <section id="contact" className="py-28" style={{ background: "#F1F2F3" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-20 items-start">
 
             {/* Info column */}
             <div className="reveal">
               <div className="inline-flex items-center gap-2 mb-6">
-                <span className="laser-dot" />
-                <span className="label-tag" style={{ color: "#00f0ff" }}>İletişim</span>
+                <span className="accent-dot" />
+                <span className="label-tag" style={{ color: "#3525CD" }}>İletişim</span>
               </div>
 
               <h2
-                className="font-headline font-extrabold chrome-text mb-6"
-                style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)", letterSpacing: "-0.04em" }}
+                className="font-headline font-bold editorial-text mb-6"
+                style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)", letterSpacing: "-0.02em" }}
               >
                 Projenizi Konuşalım
               </h2>
 
-              <p className="text-lg leading-relaxed mb-12" style={{ color: "#b9cacb" }}>
+              <p className="text-lg leading-relaxed mb-12" style={{ color: "#44474F", lineHeight: "1.6" }}>
                 Hayalinizdeki projeyi gerçeğe dönüştürmek için ilk adımı atın. Ekibimiz sizinle iletişime geçmek için sabırsızlanıyor.
               </p>
 
@@ -700,25 +700,24 @@ export default function Home() {
                   {
                     label: "E-Posta", value: "info@silverstoneai.com", href: "mailto:info@silverstoneai.com",
                     icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="#00f0ff" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5" fill="none" stroke="#3525CD" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     ),
                   },
                   {
-                    label: "Telefon", value: "+90 538 528 03 33", href: "tel:+905385280333",
+                    label: "Telefon", value: "+90 538 326 03 35", href: "tel:+905383260335",
                     icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="#00f0ff" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5" fill="none" stroke="#3525CD" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     ),
                   },
                 ].map(({ label, value, href, icon }) => (
                   <div key={label} className="flex items-center gap-5 group">
-                    {/* Icon box — surface_container_highest */}
                     <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105"
-                      style={{ background: "rgba(53,53,52,0.6)", border: "1px solid rgba(59,73,75,0.12)" }}
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105 ambient-shadow"
+                      style={{ background: "#FFFFFF" }}
                     >
                       {icon}
                     </div>
@@ -727,9 +726,9 @@ export default function Home() {
                       <a
                         href={href}
                         className="font-headline text-lg font-semibold transition-colors"
-                        style={{ color: "#e5e2e1" }}
-                        onMouseOver={e => (e.currentTarget.style.color = "#00f0ff")}
-                        onMouseOut={e => (e.currentTarget.style.color = "#e5e2e1")}
+                        style={{ color: "#191C1D" }}
+                        onMouseOver={e => (e.currentTarget.style.color = "#3525CD")}
+                        onMouseOut={e => (e.currentTarget.style.color = "#191C1D")}
                       >
                         {value}
                       </a>
@@ -740,17 +739,17 @@ export default function Home() {
                 {/* Location */}
                 <div className="flex items-center gap-5 group">
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105"
-                    style={{ background: "rgba(53,53,52,0.6)", border: "1px solid rgba(59,73,75,0.12)" }}
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all group-hover:scale-105 ambient-shadow"
+                    style={{ background: "#FFFFFF" }}
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="#00f0ff" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5" fill="none" stroke="#3525CD" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
                   <div>
                     <div className="label-tag mb-1">Konum</div>
-                    <p className="font-headline text-lg font-semibold" style={{ color: "#e5e2e1" }}>Alanya / Antalya</p>
+                    <p className="font-headline text-lg font-semibold" style={{ color: "#191C1D" }}>Alanya / Antalya</p>
                   </div>
                 </div>
               </div>
@@ -758,16 +757,16 @@ export default function Home() {
               {/* Availability badge */}
               <div
                 className="mt-12 inline-flex items-center gap-3 px-5 py-2.5 rounded-full"
-                style={{ background: "rgba(16,185,129,0.07)", border: "1px solid rgba(16,185,129,0.15)" }}
+                style={{ background: "rgba(16,185,129,0.06)", border: "1px solid rgba(16,185,129,0.12)" }}
               >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-slow inline-block" />
-                <span className="label-tag" style={{ color: "#34d399" }}>Şu an müsaitiz</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse-slow inline-block" />
+                <span className="label-tag" style={{ color: "#059669" }}>Şu an müsaitiz</span>
               </div>
             </div>
 
-            {/* Form — glass panel with ambient glow */}
+            {/* Form — glass panel with ambient shadow */}
             <div
-              className="reveal glass-panel cyber-glow p-10 rounded-[2rem]"
+              className="reveal glass-panel ambient-shadow-lg p-10 rounded-[2rem]"
               style={{ transitionDelay: "0.15s" }}
             >
               <form id="contact-form" noValidate onSubmit={handleSubmit} className="space-y-6">
@@ -798,18 +797,18 @@ export default function Home() {
                   <textarea id="message" name="message" rows={4} required placeholder="Projenizden kısaca bahsedin…" className="form-input resize-none" />
                 </div>
 
-                {/* Glow submit button */}
-                <button type="submit" className="btn-glow w-full py-4 text-base rounded-[1rem]">
+                {/* Primary gradient submit button */}
+                <button type="submit" className="btn-primary w-full py-4 text-base rounded-[1.5rem]">
                   <span>Gönder</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
                 </button>
 
-                <p id="form-success" className="hidden mt-4 text-center text-sm font-medium" style={{ color: "#34d399" }}>
+                <p id="form-success" className="hidden mt-4 text-center text-sm font-medium" style={{ color: "#059669" }}>
                   ✓ Mesajınız alındı! En kısa sürede dönüş yapacağız.
                 </p>
-                <p id="form-error" className="hidden mt-4 text-center text-sm" style={{ color: "#f87171" }}>
+                <p id="form-error" className="hidden mt-4 text-center text-sm" style={{ color: "#DC2626" }}>
                   Lütfen zorunlu alanları doldurun.
                 </p>
               </form>
@@ -819,38 +818,68 @@ export default function Home() {
       </section>
 
       {/* ══════════════════ FOOTER ══════════════════ */}
-      {/* Deepest surface — no border, tonal gap from contact section */}
-      <footer style={{ background: "#080808" }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          <a href="#hero" className="flex items-center gap-2.5">
-            <div
-              className="w-7 h-7 rounded-xl flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg, #00f0ff, #00dbe9)" }}
-            >
-              <svg className="w-4 h-4" fill="none" stroke="#00363a" viewBox="0 0 24 24" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <span className="font-headline font-bold text-lg chrome-text">Silverstone AI</span>
-          </a>
-
-          <nav className="flex items-center gap-8" aria-label="Footer navigasyon">
-            {[
-              { href: "#", label: "X" },
-              { href: "#", label: "Instagram" },
-              { href: "https://linkedin.com", label: "LinkedIn" },
-            ].map(({ href, label }) => (
-              <a
-                key={label}
-                href={href}
-                className="label-tag transition-colors duration-300 hover:text-[#00f0ff]"
+      <footer style={{ background: "#EDEEEF" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <a href="#hero" className="flex items-center gap-2.5">
+              <div
+                className="w-7 h-7 rounded-xl flex items-center justify-center"
+                style={{ background: "linear-gradient(135deg, #3525CD, #4F46E5)" }}
               >
-                {label}
-              </a>
-            ))}
-          </nav>
+                <svg className="w-4 h-4" fill="none" stroke="#FFFFFF" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <span className="font-headline font-bold text-lg editorial-text">Silverstone AI</span>
+            </a>
 
-          <p className="label-tag">© 2025 Silverstone AI. Tüm hakları saklıdır.</p>
+            {/* Team & Social Links */}
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              {/* Team LinkedIn Profiles */}
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://www.linkedin.com/in/emir-kadir-g%C3%BCm%C3%BC%C5%9F-694414387"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label-tag transition-colors duration-300 hover:text-[#3525CD]"
+                  style={{ color: "#44474F" }}
+                >
+                  Emir Kadir Gümüş
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/sevg%C3%BCl-ta%C5%9Fk%C4%B1ran-7a5217355/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label-tag transition-colors duration-300 hover:text-[#3525CD]"
+                  style={{ color: "#44474F" }}
+                >
+                  Sevgül Taşkıran
+                </a>
+              </div>
+
+              {/* Social Links */}
+              <nav className="flex items-center gap-6" aria-label="Footer navigasyon">
+                {[
+                  { href: "#", label: "X" },
+                  { href: "#", label: "Instagram" },
+                  { href: "https://linkedin.com", label: "LinkedIn" },
+                ].map(({ href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="label-tag transition-colors duration-300 hover:text-[#3525CD]"
+                    style={{ color: "#79747E" }}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            <p className="label-tag" style={{ color: "#79747E" }}>© 2025 Silverstone AI. Tüm hakları saklıdır.</p>
+          </div>
         </div>
       </footer>
     </>

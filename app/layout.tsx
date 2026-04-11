@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-inter",
   display: "swap",
 });
 
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-plus-jakarta",
+const manrope = Manrope({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-manrope",
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
@@ -18,7 +18,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Silverstone AI – Geleneksel İşletmeleri Geleceğin Teknolojisine Bağlıyoruz",
   description:
-    "Silverstone AI; Web Tasarım, n8n Otomasyonları ve AI Çözümleri ile iletişim ve iş akışlarınızı geleceğe taşıyan teknoloji ortağınız.",
+    "Silverstone AI; Web Tasarım, n8n Otomasyonları ve AI Çözümleri ile iletişim ve iş akışlarınızı geleceğe taşıyan teknoloji ortağınız. Alanya / Antalya.",
   keywords: "web tasarım, n8n otomasyon, AI ajanlar, yapay zeka, Silverstone AI, Alanya, Antalya",
   robots: "index, follow",
   openGraph: {
@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" className={`${inter.variable} ${plusJakarta.variable}`}>
+    <html lang="tr" className={`${inter.variable} ${manrope.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );
